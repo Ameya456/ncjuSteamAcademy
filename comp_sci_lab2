@@ -1,0 +1,30 @@
+class UndoRedoStack: # A class to manage undo and redo operations using two stacks
+    def__init__(self): # Initializes the undo and redo stacks
+    self.undo_stack = []
+    self.redo_stack = []
+
+    def do_action(self,action): # Records a new action and clears the redo stack
+        self.undo_stack.append(action)
+        self.redo_stack.clear()
+        print(f"Action appended: {action}")
+
+    def undo(self):
+        if len(self.undo_stack) == 0:
+            print("undo_stack is empty.")
+            return None
+        action = self.undo_stack.pop()
+        self.redo_stack.append(action)
+        print("Action undone: {action}")
+    
+    def redo(self):
+        if len(self.redo_stack) == 0:
+            print("redo_stack is empty.")
+            return None
+        action = self.redo_stack.pop()
+        self.undo_stack.append(action)
+        print("Action undone: {action}")
+    
+    def clear(self):
+        self.undo_stack.clear()
+        self.redo_stack.clear()
+        print("Both Stacks cleared.")
