@@ -1,7 +1,7 @@
 class UndoRedoStack: # A class to manage undo and redo operations using two stacks
-    def__init__(self): # Initializes the undo and redo stacks
-    self.undo_stack = []
-    self.redo_stack = []
+    def __init__(self): # Initializes the undo and redo stacks
+        self.undo_stack = []
+        self.redo_stack = []
 
     def do_action(self,action): # Records a new action and clears the redo stack
         self.undo_stack.append(action)
@@ -28,3 +28,12 @@ class UndoRedoStack: # A class to manage undo and redo operations using two stac
         self.undo_stack.clear()
         self.redo_stack.clear()
         print("Both Stacks cleared.")
+
+
+if __name__ == "__main__"
+    stack = UndoRedoStack()
+    stack.do_action("Type 'Ameya Chakote'")
+    stack.do_action("Delete 'Chakote'")
+    stack.undo()
+    stack.redo()
+    stack.clear()
