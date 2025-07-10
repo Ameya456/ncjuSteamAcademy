@@ -8,7 +8,7 @@ class UndoRedoStack: # A class to manage undo and redo operations using two stac
         self.redo_stack.clear()
         print(f"Action appended: {action}")
 
-    def undo(self):
+    def undo(self): # Checks if undo stack is empty and removes last action from undo_stack and adds same into redo_stack.
         if len(self.undo_stack) == 0:
             print("undo_stack is empty.")
             return None
@@ -16,24 +16,32 @@ class UndoRedoStack: # A class to manage undo and redo operations using two stac
         self.redo_stack.append(action)
         print("Action undone: {action}")
     
-    def redo(self):
+    def redo(self): # Checks if redo stack is emoty and removes last action from redo_stack and adds same into undo_stack.
         if len(self.redo_stack) == 0:
             print("redo_stack is empty.")
             return None
         action = self.redo_stack.pop()
         self.undo_stack.append(action)
-        print("Action undone: {action}")
+        print("Action redone: {action}")
     
-    def clear(self):
+    def clear(self): # Clears both undo_stack and redo_stack
         self.undo_stack.clear()
         self.redo_stack.clear()
         print("Both Stacks cleared.")
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     stack = UndoRedoStack()
-    stack.do_action("Type 'Ameya Chakote'")
-    stack.do_action("Delete 'Chakote'")
+    stack.do_action("Ameya")
+    stack.do_action("Chakote")
+    print("Current state of undo_stack is":, stack.undo_stack)
+    print("Current state of redo_stack is":, stack.redo_stack)
     stack.undo()
+    print("After undo action current state of undo_stack is":, stack.undo_stack)
+    print("After undo action current state of redo_stack is":, stack.redo_stack)
     stack.redo()
+    print("After redo action current state of undo_stack is":, stack.undo_stack)
+    print("After redo action current state of redo_stack is":, stack.redo_stack)
     stack.clear()
+    print("After clear action current state of undo_stack is":, stack.undo_stack)
+    print("After clear action current state of redo_stack is":, stack.redo_stack)
